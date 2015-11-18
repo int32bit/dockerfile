@@ -5,11 +5,17 @@
 FROM          alpine
 MAINTAINER    krystism <krystism@gmail.com>
 ENV FFMPEG_VERSION=2.8
-WORKDIR /tmp/workdir
-ADD ffmpeg-release-64bit-static.tar.xz /tmp/workdir
-RUN    cp ffmpeg-2.8-64bit-static/ffmpeg /usr/bin/ \
-    && cp ffmpeg-2.8-64bit-static/ffprobe /usr/bin/ \
-    && cp ffmpeg-2.8-64bit-static/ffserver /usr/bin/ \
-    && rm -rf ffmpeg-2.8-64bit-static
-ENTRYPOINT /usr/bin/ffmpeg
-CMD ['--help']
+ENV FFMPEG_DOWNLOAD_URL http://johnvansickle.com/ffmpeg/builds/ffmpeg-git-64bit-static.tar.xz
+WORKDIR /workdir
+RUN apk add --update curl \
+	&& curl -sSL "$FFMPEG_DOWNLOAD_URL" -o ffmpeg.tar.xz \
+	&& tar -xvJf ffmpeg.tar.xz \
+	&& mv ffmpeg-* ffmpeg \
+	&& cp ffmpeg/ffmpeg /usr/bin/ \
+	&& cp ffmpeg/ffprobe /usr/bin/ \
+	&& cp ffmpeg/ffserver /usr/bin/ \
+    	&& rm -rf ffmpeg \
+	&& rm -rf ffmpeg.tar.xz \
+	&& apk del --purge curl \
+	&& rm -rf /var/cache/apk/*
+CMD ["ffmpeg","--help"]
