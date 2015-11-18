@@ -12,4 +12,4 @@ docker build -t fmtconverter .
 docker run -e FORMAT=mp4  -v `pwd`/input:/input -v `pwd`/output:/output --rm fmtconverter src
 ```
 
-** You must set `FORMAT` environment to specifed target format.**
+**You must set `FORMAT` environment to specifed target format.**
