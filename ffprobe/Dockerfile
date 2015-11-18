@@ -11,7 +11,7 @@ RUN apk add --update curl \
 	&& curl -sSL "$FFMPEG_DOWNLOAD_URL" -o ffmpeg.tar.xz \
 	&& tar -xvJf ffmpeg.tar.xz \
 	&& mv ffmpeg-* ffmpeg \
-	&& cp ffmpeg/ffmpeg /usr/bin/ \
+	&& cp ffmpeg/ffprobe /usr/bin/ \
     	&& rm -rf ffmpeg \
 	&& rm -rf ffmpeg.tar.xz \
 	&& apk del --purge curl \
