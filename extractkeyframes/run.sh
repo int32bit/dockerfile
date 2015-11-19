@@ -1,3 +1,3 @@
 #!/bin/sh
 set -x
-docker build -t extractkeyframes .
+docker build -t krystism/extractkeyframes .

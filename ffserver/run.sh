@@ -1,4 +1,4 @@
 #!/bin/bash
 docker pull alpine
-docker build -t ffserver:2.8 --rm .
-docker build -t ffserver:latest --rm .
+docker build -t krystism/ffserver:2.8 --rm .
+docker build -t krystism/ffserver:latest --rm .

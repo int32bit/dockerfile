@@ -6,7 +6,8 @@ FROM          alpine
 MAINTAINER    krystism <krystism@gmail.com>
 ENV FFMPEG_VERSION=2.8
 ENV FFMPEG_DOWNLOAD_URL http://johnvansickle.com/ffmpeg/builds/ffmpeg-git-64bit-static.tar.xz
-WORKDIR /workdir
+RUN mkdir /input /output
+WORKDIR /input
 RUN apk add --update curl \
 	&& curl -sSL "$FFMPEG_DOWNLOAD_URL" -o ffmpeg.tar.xz \
 	&& tar -xvJf ffmpeg.tar.xz \
