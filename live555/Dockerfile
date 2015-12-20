@@ -4,7 +4,7 @@
 #
 FROM debian:jessie
 MAINTAINER    krystism <krystism@gmail.com>
-# ADD sources.list /etc/apt/sources.list
+ADD sources.list /etc/apt/sources.list
 RUN apt-get -y update \
 	&& apt-get -y install curl gcc g++ make
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -27,4 +27,5 @@ RUN buildDeps='gcc make' \
 	&& rm -r /usr/src/live555 \
 	&& apt-get purge -y --auto-remove $buildDeps
 EXPOSE 80
-CMD ["live555MediaServer"]
+EXPOSE 8000
+CMD ["live555ProxyServer","$@"]
