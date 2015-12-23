@@ -1,4 +1,7 @@
 build:
 	docker build -t krystism/videosynopsis .
 run:
-	docker run -t -i --rm krystism/videosynopsis
+	docker run -t -i --rm --name videosynopsis -v /home/fgp/javacv-bin/output:/output  krystism/videosynopsis
+push:
+	docker build -t localhost:5000/videosynopsis .
+	docker push localhost:5000/videosynopsis

@@ -29,3 +29,8 @@
 
 # test files
 test_*
+
+# video files
+*.mp4
+*.flv
+*.avi
